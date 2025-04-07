@@ -8,15 +8,15 @@
 function convertToObject(sourceString) {
   const result = {};
 
-  for (const props of sourceString.split(';')) {
+  const properties = sourceString.split(';');
+
+  properties.forEach((props) => {
     const elements = props.split(':');
 
-    if (elements.length !== 2) {
-      continue;
+    if (elements.length === 2) {
+      result[elements[0].trim()] = elements[1].trim();
     }
-
-    result[elements[0].trim()] = elements[1].trim();
-  }
+  });
 
   return result;
 }
