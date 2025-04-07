@@ -10,12 +10,11 @@ function convertToObject(sourceString) {
 
   const properties = sourceString.split(';');
 
-  properties.forEach((props) => {
-    const elements = props.split(':');
+  const elements = properties.map((props) => props.split(':'));
+  const validElements = elements.filter((e) => e.length === 2);
 
-    if (elements.length === 2) {
-      result[elements[0].trim()] = elements[1].trim();
-    }
+  validElements.forEach((e) => {
+    result[e[0].trim()] = e[1].trim();
   });
 
   return result;
